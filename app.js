@@ -20,7 +20,8 @@ app.get('/api/countryList', async (req,res) => {
         name: el.name,
         capital: el.capital,
         flag: el.flag,
-        id: el.id
+        cardBG: el.cardBG,
+        id: el.id,
       }
     })
     res.status(200).json({response});

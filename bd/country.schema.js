@@ -45,8 +45,11 @@ const schema = new Schema ({
   description: {
     type: String,
     require: true,
+  },
+  cardBG: {
+    type: String,
+    require: true,
   }
-  
 });
 
 module.exports = model('Countries', schema);
