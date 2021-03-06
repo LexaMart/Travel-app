@@ -9,14 +9,6 @@ const schema = new Schema ({
     type: String,
     required: true, 
   },
-  region: {
-    type: String,
-    required: true,
-  },
-  population: {
-    type: Number,
-    required: true,
-  },
   lat: {
     type: Number,
     required: true,
@@ -25,18 +17,36 @@ const schema = new Schema ({
     type: Number,
     required: true,
   },
-  currencies: {
+  language: {
     type: String,
     required: true,
   },
-  language: {
+  currencies: {
     type: String,
     required: true,
   },
   flag: {
     type: String,
     required: true,
+  },
+  timezone: {
+    type: String,
+    require: true
+  },
+  sights: [{
+    name: String,
+    description: String,
+    photo: String,    
+  }],
+  video: {
+    type: String,
+    require: true,
+  },
+  description: {
+    type: String,
+    require: true,
   }
+  
 });
 
-module.exports = model('Country', schema);
+module.exports = model('Countries', schema);
