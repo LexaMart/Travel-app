@@ -4,7 +4,7 @@ import { Country } from './pages/country/Country';
 import { Main } from './pages/main/Main';
 import { StylesPage } from './pages/Styles/Styles';
 
-export const useRoutes = () => {
+export const useRoutes = (isAuthenticated) => {
   return (
     <Switch>
       <Route path="/main">
@@ -19,5 +19,4 @@ export const useRoutes = () => {
       <Redirect to="/main" /> 
     </Switch>
   )
-
 }
