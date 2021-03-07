@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHttp } from '../../hooks/http.hook';
+import { useMessage } from './../../hooks/message.hook';
 import './auth.css'
 
-const serverUrl = 'http://localhost:8080/'
+const serverUrl = 'http://localhost:8080'
 
 export const AuthCard = () => {
-  const { loading, error, request } = useHttp();
+  const message = useMessage();
+  const { loading, error, request, clearError } = useHttp();
   const [form, setForm] = useState({
-    email: '', password: ''
+    email: '', password: '', name: ''
   })
+
+  useEffect(() => {
+    message(error)
+    clearError();
+  }, [error, message, clearError])
 
   const changeHandler = event => {
     setForm({ ...form, [event.target.name]: event.target.value })
@@ -16,8 +23,8 @@ export const AuthCard = () => {
 
   const registerHandler = async () => {
     try {
-      const data = await request(`${serverUrl}/api/register`, 'POST', { ...form })
-      console.log("Data", data)
+      const data = await request(`${serverUrl}/api/auth/register`, 'POST', { ...form })
+      message(data.message);
     } catch (e) { }
   }
 
@@ -51,12 +58,21 @@ export const AuthCard = () => {
               />
               <label htmlFor="password">Password</label>
             </div>
+            <div className="input-field">
+              <input placeholder="Enter name or nickname"
+                id="nickname"
+                type="text"
+                name="name"
+                className="card-input"
+                onChange={changeHandler}
+              />
+              <label htmlFor="password">Name or Nikname</label>
+            </div>
           </div>
           <div className="card-action">
             <button
               className='btn yellow darken-4 signIn-btn'
               disabled={loading}
-
             >
               Sing In
             </button>

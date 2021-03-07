@@ -1,13 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const { get } = require('request');
-const request = require('request');
-const { count } = require('./bd/country.schema');
-
+const bodyParser = require('body-parser');
 
 const app = express();
 const PORT = process.env.PORT ?? 8080;
 const Country = require('./bd/country.schema');
+
+app.use(bodyParser.json())
+app.use('/api/auth', require('./routes/auth.routes'))
 
 app.get('/api/countryList', async (req,res) => {
   try {
