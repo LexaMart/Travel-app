@@ -28,6 +28,13 @@ export const AuthCard = () => {
     } catch (e) { }
   }
 
+  const loginHandler = async () => {
+    try {
+      const data = await request(`${serverUrl}/api/auth/login`, 'POST', { ...form })
+      message(data.message);
+    } catch (e) { }
+  }
+
   return (
     <div className="row">
       <div className="col s6 offset-s3">
@@ -72,6 +79,7 @@ export const AuthCard = () => {
           <div className="card-action">
             <button
               className='btn yellow darken-4 signIn-btn'
+              onClick={loginHandler}
               disabled={loading}
             >
               Sing In

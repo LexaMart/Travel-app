@@ -15,6 +15,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "concurrently": "^6.0.0",
+    "config": "^3.3.4",
     "create-react-app": "^4.0.3",
     "express": "^4.17.1",
     "express-validator": "^6.10.0",
