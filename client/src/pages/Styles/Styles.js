@@ -4,6 +4,10 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 export const StylesPage = () => {
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = window.M.FormSelect.init(elems, "");
+  });
   return (
     <>
       <nav>
@@ -26,13 +30,15 @@ export const StylesPage = () => {
         <li class="waves-effect"><a href="#!">5</a></li>
         <li class="waves-effect"><a href="#!"><i class="material-icons"><ChevronRightIcon /></i></a></li>
       </ul>
-      <label>Browser Select</label>
-      <select class="browser-default">
-        <option value="" disabled selected>Choose your option</option>
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-        <option value="3">Option 3</option>
-      </select>
+      <div class="input-field col s12">
+    <select>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+    <label>Materialize Select</label>
+  </div>
     </>
   )
 }
