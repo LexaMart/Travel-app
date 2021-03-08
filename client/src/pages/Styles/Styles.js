@@ -21,14 +21,14 @@ export const StylesPage = () => {
         </div>
 
       </nav>
-      <ul class="pagination">
-        <li class="disabled"><a href="#!"><i class="material-icons"><ChevronLeftIcon /></i></a></li>
-        <li class="active"><a href="#!">1</a></li>
-        <li class="waves-effect"><a href="#!">2</a></li>
-        <li class="waves-effect"><a href="#!">3</a></li>
-        <li class="waves-effect"><a href="#!">4</a></li>
-        <li class="waves-effect"><a href="#!">5</a></li>
-        <li class="waves-effect"><a href="#!"><i class="material-icons"><ChevronRightIcon /></i></a></li>
+      <ul className="pagination">
+        <li className="disabled"><a href="#!"><i className="material-icons"><ChevronLeftIcon /></i></a></li>
+        <li className="active"><a href="#!">1</a></li>
+        <li className="waves-effect"><a href="#!">2</a></li>
+        <li className="waves-effect"><a href="#!">3</a></li>
+        <li className="waves-effect"><a href="#!">4</a></li>
+        <li className="waves-effect"><a href="#!">5</a></li>
+        <li className="waves-effect"><a href="#!"><i className="material-icons"><ChevronRightIcon /></i></a></li>
       </ul>
       <div class="input-field col s12">
     <select>
