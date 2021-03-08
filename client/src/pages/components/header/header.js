@@ -1,9 +1,10 @@
-import React from 'react';
-
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../context/AuthContext';
 import 'materialize-css';
 import './header.css';
 
 export const Header = () => {
+    const { isAuthenticated } = useContext(AuthContext);
     return (
         <div>
             <nav id="navbar">
@@ -25,9 +26,9 @@ export const Header = () => {
                         </li>
                     </ul>
                     <ul class="right">
-                        <li><a href="/signin">Sign in</a></li>
+                        {isAuthenticated ? <li><a href="/signin">Sign out</a></li> : <li><a href="/signin">Sign in</a></li>}
                         <li>
-                            <div id ='select_area' class="input-field col s12">
+                            <div id='select_area' class="input-field col s12">
                                 <select class="selector">
                                     <option value="RU">Russian</option>
                                     <option value="EN">English</option>
