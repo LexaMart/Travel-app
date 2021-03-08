@@ -1,0 +1,31 @@
+#navbar {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 56px;
+    line-height: 56px;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+#select_area {
+    display: flex;
+    justify-content: center;
+    height: 56px;
+}
+
+.selector {
+    background-color: white;
+    width: 100%;
+    height: 30px;
+    display: block;
+    align-self: center;
+}
+
+#search_area {
+    margin-left: 50%;
+    width: 30rem;
+    height: 56px;
+    line-height: 56px;
+    position: relative;
+}
