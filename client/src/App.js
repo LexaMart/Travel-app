@@ -1,8 +1,8 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import { useRoutes } from './routes';
 import './app.css';
-import { Header } from './pages/header/header';
-import { Footer } from './pages/footer/footer';
+import { Header } from './pages/components/header/header';
+import { Footer } from './pages/components/footer/footer';
 import { useAuth } from './hooks/auth.hook';
 import { AuthContext } from './context/AuthContext';
 import 'materialize-css';
@@ -18,7 +18,6 @@ const App = () => {
       token, login, logout, userId, isAuthenticated
     }}>
       <div class="bg">
-         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
           <Header />
           <Router>
             {routes}

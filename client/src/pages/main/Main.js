@@ -1,7 +1,7 @@
 import React from 'react';
 import './main.css';
 import 'materialize-css';
-import Card from '../card/card';
+import Card from '../components/card/card';
 
 export const Main = () => {
  return (
