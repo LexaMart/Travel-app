@@ -11,7 +11,7 @@ router.post(
   '/register',
   [
     check('email', 'Bad email').isEmail(),
-    check('password', 'Password should contain 6 symbols')
+    check('password', 'Password must contain at least 6 symbols')
       .isLength({ min: 6 })
   ],
   async (req, res) => {
@@ -26,7 +26,7 @@ router.post(
       const { email, password, name } = req.body
       const candidate = await User.findOne({ email })
       if (candidate) {
-        res.status(400).json({ message: 'user is already exist' });
+        return res.status(400).json({ message: 'User is already exist' });
       }
       const hashedPassword = await bcrypt.hash(password, 8)
       let nickName;
@@ -76,7 +76,7 @@ router.post('/login',
     }
     catch (e) {
       console.log(e)
-      res.status(500).json({ message: "Back error" })
+      res.status(500).json({ message: "Server error" })
     }
   })
 
