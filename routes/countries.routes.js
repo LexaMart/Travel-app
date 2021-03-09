@@ -60,6 +60,7 @@ router.get('/country', async (req, res) => {
       timezone: country.timezone,
       sights: country.sights,
       video: country.video,
+      countryBg: country.cardBG,
       description: country.description,
       timezone: country.timezone,
       weather: weather,
