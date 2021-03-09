@@ -2,4 +2,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    max-height: 100vh;
+    overflow: auto;
 }
