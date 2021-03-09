@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { urls } from '../../assets/constants/usrls';
 import { useHttp } from '../../hooks/http.hook';
-import Card from '../components/card/card';
+import Card from '../components/card/Card';
 import './main.css';
 import 'materialize-css';
 

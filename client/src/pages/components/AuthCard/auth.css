@@ -18,3 +18,27 @@ input.card-input:focus {
 input.card-input:focus + label {
   color: #ffeb3b !important;
 }
+
+.auth-card {
+  height: fit-content !important;
+  width: 100%;
+}
+.auth-card-block {
+  transition: all 1s;
+  z-index: 3 !important;
+  position: absolute;
+  width: 35%;
+  background: red;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.shadow {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 2;
+}

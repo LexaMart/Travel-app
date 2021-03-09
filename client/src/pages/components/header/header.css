@@ -29,3 +29,12 @@
     line-height: 56px;
     position: relative;
 }
+
+.sign-in-link {
+    transition: background-color .3s;
+    font-size: 1rem;
+    color: #fff;
+    display: block;
+    padding: 0 15px;
+    cursor: pointer;
+}
