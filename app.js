@@ -1,35 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-
 const app = express();
 const PORT = process.env.PORT ?? 8080;
-const Country = require('./bd/country.schema');
 
 app.use(bodyParser.json())
 app.use('/api/auth', require('./routes/auth.routes'))
-
-app.get('/api/countryList', async (req,res) => {
-  try {
-    const countries = await Country.find();
-    if(!countries) {
-      res.status(404).json({message: 'API error'})
-    }
-    const response = countries.map(el => {
-      return {
-        name: el.name,
-        capital: el.capital,
-        flag: el.flag,
-        cardBG: el.cardBG,
-        id: el.id,
-      }
-    })
-    res.status(200).json({response});
-  }catch (e) {
-    console.log(e)
-  }
-}) 
-
+app.use('/api/countryList', require('./routes/countries.routes'))
 
 
 async function start() {
