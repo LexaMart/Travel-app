@@ -1,0 +1,21 @@
+.country-content-wrapper {
+  width: 100%;
+}
+
+.card-image-handler {
+  width: fit-content;
+  height: fit-content;
+}
+
+.country-content-card {
+  width: 245px;
+  height: 150px;
+  border-radius: 20px;
+}
+
+.weather-vidjet {
+  display: flex;
+  background-color: #3f80da;
+  justify-content: space-around;
+  color: white;
+}

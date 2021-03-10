@@ -14,7 +14,7 @@ export const Main = () => {
     try {
       const fetched = await request(urls.GET_COUNTRIES, 'GET', null)
       setData(fetched.response);
-    }catch(e) {}
+    } catch (e) { }
   }, [request])
   useEffect(
     () => {

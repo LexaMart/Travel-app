@@ -48,9 +48,11 @@ router.get('/country', async (req, res) => {
     let curenciesCurses = null;
     await request(`https://currate.ru/api/?get=rates&pairs=${country.currencies}USD,${country.currencies}EUR,${country.currencies}RUB&key=${config.get('currencies')}`,(err, res, body) => {
       curenciesCurses = body
-      console.log(body);
     })
+    console.log(weather);
+    console.log(country)
     res.status(200).json({
+      weather: weather,
       name: country.name,
       capital: country.capital,
       lat: country.lat,
@@ -63,7 +65,6 @@ router.get('/country', async (req, res) => {
       countryBg: country.cardBG,
       description: country.description,
       timezone: country.timezone,
-      weather: weather,
       curenciesCurses: curenciesCurses,
     })
   } catch (e) {
