@@ -28,7 +28,6 @@ router.get('/', async (req, res) => {
 router.get('/country', async (req, res) => {
   try {
     const id = req.query.id
-    console.log(id);
     if (!id) return res.status(400).json({ message: 'Bad country ID' })
     const country = await Country.findById(id)
     if (!country) {
@@ -45,12 +44,32 @@ router.get('/country', async (req, res) => {
         feelsLike: weatherData.main.feels_like,
       }
     })
-    let curenciesCurses = null;
-    await request(`https://currate.ru/api/?get=rates&pairs=${country.currencies}USD,${country.currencies}EUR,${country.currencies}RUB&key=${config.get('currencies')}`,(err, res, body) => {
-      curenciesCurses = body
+    let currentCurrencies = null;
+    await request(`https://currate.ru/api/?get=rates&pairs=USD${country.currencies},EUR${country.currencies},RUB${country.currencies}&key=${config.get('currencies')}`, (err, res, body) => {
+      const fetched = JSON.parse(body);
+      currentCurrencies = {};
+      for (let key in fetched.data) {
+        const currency = key.slice(0, 3)
+        if (country.currencies === "USD" || country.currencies === "EUR" || country.currencies === "RUB") {
+          currentCurrencies[country.currencies] = 1;
+        }
+        switch (currency) {
+          case "USD":
+            console.log(typeof fetched.data[key]);
+            currentCurrencies.USD = (+fetched.data[key]).toFixed(2)
+            break;
+          case "EUR":
+            currentCurrencies.EUR = (+fetched.data[key]).toFixed(2)
+            break;
+          case "RUB":
+            currentCurrencies.RUB = (+fetched.data[key]).toFixed(2)
+            break;
+          default:
+            break;
+        }
+      }
     })
-    console.log(weather);
-    console.log(country)
+    console.log(currentCurrencies);
     res.status(200).json({
       weather: weather,
       name: country.name,
@@ -65,7 +84,7 @@ router.get('/country', async (req, res) => {
       countryBg: country.cardBG,
       description: country.description,
       timezone: country.timezone,
-      curenciesCurses: curenciesCurses,
+      currentCurrencies,
     })
   } catch (e) {
     console.log(e)

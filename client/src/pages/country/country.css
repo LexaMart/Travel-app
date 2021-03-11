@@ -1,5 +1,9 @@
 .country-content-wrapper {
   width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  justify-items: center;
 }
 
 .card-image-handler {
@@ -18,4 +22,44 @@
   background-color: #3f80da;
   justify-content: space-around;
   color: white;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.weather {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.currencies {
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(37, 35, 35);
+  color: white
+}
+
+.currency-block {
+  display: flex;
+  flex-flow: column;
+}
+
+.video {
+  height: fit-content;
+  width: fit-content;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: auto;
+}
+
+.country-description {
+  max-height: 315px;
+  height: 100%;
+  overflow: auto;
+  background-color: pink;
+}
+
+.description-text {
+  padding-left: 10px;
+  font-weight: 600;
 }
