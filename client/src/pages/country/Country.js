@@ -10,6 +10,7 @@ import { Exchange } from './components/Exchange';
 import { Description } from './components/CountryDescription';
 import { Video } from './components/Video';
 import { Map } from './components/Map';
+import { SightCard } from './components/SightCard';
 
 import './country.css';
 
@@ -39,6 +40,9 @@ export const Country = () => {
       <Description desc={data.description} />
       <Video video={data.video} />
       <Map lat={data.lat} lng= {data.lng} />
+      {data.sights.map((el) => {
+        return  <SightCard element={el} />
+      })}
     </div>
   )
 }

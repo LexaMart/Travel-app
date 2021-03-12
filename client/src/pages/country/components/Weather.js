@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 export const Weather = ({ capital, weatherIcon, temp, feelsLike, main, timeZones }) => {
   const getTime = () => {
-    // return `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
     return new Date().toLocaleTimeString('en-US', {timeZone: timeZones})
   }
   const options = { year: 'numeric', month: 'long', day: 'numeric', timeZone: timeZones };

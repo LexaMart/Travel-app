@@ -76,3 +76,44 @@
   height: 100%;
   border-radius: 35px;
 }
+
+.sight {
+  position: relative;
+  perspective: 1000px;
+}
+
+.front, .back {
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  transition: all 1s;
+  backface-visibility: hidden;
+}
+.front {
+  position: absolute;
+}
+
+.back {
+  position: absolute;
+  background-color: rgb(56, 49, 49);
+  color:white;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-flow: column;
+}
+
+.sight-name {
+  text-align: center;
+}
+
+.sight-description {
+  color: white;
+  height: 80%;
+  overflow: auto;
+}
+
+.sight:hover .front{transform: rotateY(180deg);}
+.sight:hover .back{transform: rotateY(360deg);}
