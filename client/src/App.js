@@ -19,7 +19,7 @@ const App = () => {
     <AuthContext.Provider value={{
       token, login, logout, userId, isAuthenticated
     }}>
-      <div class="bg">
+      <div className="bg">
         <AuthCard active={activeAuth} setAcive={setActiveAuth} />
         <Header active={activeAuth} setActive={setActiveAuth} />
         <Router>

@@ -1,9 +1,11 @@
 .country-content-wrapper {
   width: 100%;
+  max-width: 950px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
   justify-items: center;
+  margin: 0 auto;
 }
 
 .card-image-handler {
@@ -66,7 +68,7 @@
 .map {
   grid-column-start: 1;
   grid-column-end: 4;
-  width: 85%;
+  width: 93%;
   height: 280px;
   justify-content: center;
   border-radius: 35px;
@@ -117,3 +119,35 @@
 
 .sight:hover .front{transform: rotateY(180deg);}
 .sight:hover .back{transform: rotateY(360deg);}
+
+.popup {
+  transition: all 0.4s;
+  z-index: 20000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0,0,0,0.8);
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+}
+
+.popup-active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: all;
+}
+.popup-content {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 60%;
+  background-color: rgb(243, 240, 240);
+  border-radius: 25px;
+}

@@ -3,7 +3,7 @@ import { AuthContext } from '../../../context/AuthContext';
 import rateImg from '../../../assets/images/rate.svg';
 
 
-export const SightCard = ({ element }) => {
+export const SightCard = ({ element, modalActive, setModalActive }) => {
   const { isAuthenticated } = useContext(AuthContext);
   return (
     <div className="country-content-card sight">
@@ -19,7 +19,7 @@ export const SightCard = ({ element }) => {
         <p className="sight-description">
           {element.description}
         </p>
-        {isAuthenticated ? <div className="rate-sight">
+        {isAuthenticated ? <div onClick={() => setModalActive(!modalActive)} className="rate-sight">
           <img className="rate-img" alt="rate" src={rateImg} style={{width: "35px", height:"35px", color:"white"}} />      
         </div> : <></>}
       </div>

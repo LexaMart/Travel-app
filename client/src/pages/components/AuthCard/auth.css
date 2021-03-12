@@ -24,9 +24,9 @@ input.card-input:focus + label {
   width: 100%;
 }
 .auth-card-block {
+  position: fixed;
   transition: all 1s;
-  z-index: 3 !important;
-  position: absolute;
+  z-index: 5000 !important;
   width: 35%;
   background: red;
   height: 100vh;
@@ -35,10 +35,10 @@ input.card-input:focus + label {
 }
 
 .shadow {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100vh;
   background-color: black;
   opacity: 0.5;
-  z-index: 2;
+  z-index: 4999;
 }
