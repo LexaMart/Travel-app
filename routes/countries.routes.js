@@ -1,7 +1,10 @@
 const config = require('config');
 const { Router } = require('express');
+const jwt = require('jsonwebtoken');
 const request = require('request-promise');
 const Country = require('../bd/country.schema');
+const User = require('../bd/user.schema');
+const Rate = require('../bd/rates.schema');
 const router = Router();
 
 router.get('/', async (req, res) => {
@@ -88,6 +91,38 @@ router.get('/country', async (req, res) => {
     })
   } catch (e) {
     console.log(e)
+  }
+})
+
+router.post('/sight/rate', async (req, res) => {
+  try {
+
+    const rate = req.body.rate;
+    const sight = req.body.sight;
+    const token = req.headers.authorization.split(' ')[1];
+    const userId = jwt.decode(token, config.get("jwtSecret")).userId
+    const user = await User.findById(userId)
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' })
+    }
+    const rateCheck = await Rate.exists({
+      name: sight,
+      user: userId
+    })
+    console.log(rateCheck)
+    if (rateCheck) {
+      await Rate.updateOne({name:sight, user:userId}, {rate: rate});
+      return res.status(200).json({message: 'Mark has been sent'})
+    }
+    const newRate = new Rate({
+      name: sight,
+      rate: rate,
+      user: user.id,
+    })
+    await newRate.save();
+    return res.status(200).json({message: 'New mark has been sent'})
+  } catch (e) {
+
   }
 })
 

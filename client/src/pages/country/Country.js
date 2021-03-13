@@ -43,8 +43,8 @@ export const Country = () => {
         <Description desc={data.description} />
         <Video video={data.video} />
         <Map lat={data.lat} lng={data.lng} />
-        {data.sights.map((el) => {
-          return <div onMouseEnter={() => {setCurrentSight(el.name) }}><SightCard element={el} modalActive={modalActive} setModalActive={setModalActive} /> </div>
+        {data.sights.map((el, index) => {
+          return <div className={`grid-num-${index}`} onMouseEnter={() => {setCurrentSight(el.name) }}><SightCard element={el} modalActive={modalActive} setModalActive={setModalActive} /> </div>
         })}
       </div>
       <Modal sight={currentSight} active={modalActive} setActive={setModalActive} />
