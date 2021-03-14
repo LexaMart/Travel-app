@@ -5,3 +5,19 @@
     max-height: 100vh;
     overflow: auto;
 }
+
+  .carosel_part:active, .carosel_part:focus {
+    outline: none;
+  }
+  .carosel_part::-moz-focus-inner {
+    border: 0;
+  }
+
+@media (max-width: 1800px) {
+    .rec-arrow {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    .rec-pagination {
+        display: none;
+    }
+}

@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 const app = express();
-const PORT = process.env.PORT ?? 8080;
+const PORT = process.env.PORT || 8080;
 const Country = require('./bd/country.schema');
 
 app.use(bodyParser.json())
@@ -34,7 +34,7 @@ app.get('/api/countryList', async (req,res) => {
 
 async function start() {
   try {
-    await mongoose.connect('mongodb+srv://LexaMart:1q2w3e@cluster0.kaxpd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+    await mongoose.connect(`mongodb+srv://LexaMart:1q2w3e@cluster0.kaxpd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {
       useNewUrlParser: true,
       useFindAndModify: false
     });

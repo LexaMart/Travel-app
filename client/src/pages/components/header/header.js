@@ -10,10 +10,10 @@ export const Header = ({active, setActive}) => {
     return (
         <div>
             <nav id="navbar">
-                <div class="nav-wrapper">
+                <div id='nav' class="nav-wrapper">
                     <ul class="left">
                         <li>
-                            <a href="/" class="brand-logo">Travel App</a>
+                            <a href="/" class="app_logo left">Travel App</a>
                         </li>
                         <li>
                             <div id="search_area">

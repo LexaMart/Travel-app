@@ -12,14 +12,19 @@
     padding: 0;
     margin-top: 0; 
     height: 56px;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
 }
 
-.link {
-    margin-left: 5%;
+.links {
+    display: flex;
 }
-.linkk {
-    margin-left: 30%;
+
+.us {
+    padding: 0 20px;
 }
+
 #footer_id {
     padding: 0%;
     color: #fff;
@@ -27,4 +32,21 @@
     width: 100%;
     height: 56px;
     line-height: 56px;
+}
+
+@media (max-width: 600px) and (min-width: 450px) {
+    .us {
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 449px) {
+    .us {
+        padding: 0 5px;
+        line-height: 20px;
+    }
+    .links {
+        flex-direction: column;
+        justify-content: space-around;
+    }
 }
