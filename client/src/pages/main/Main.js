@@ -8,7 +8,7 @@ import 'materialize-css';
 
 
 
-export const Main = () => {
+export const Main = ({value}) => {
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
     { width: 550, itemsToShow: 2, itemsToScroll: 2 },
@@ -27,19 +27,47 @@ export const Main = () => {
     () => {
       getCountriesdata();
     }, [getCountriesdata])
-  return (
-    <div class="card_container">
-      <Carousel breakPoints={breakPoints}>
-        {
-          data && data.map((el, index) => {
-            if (index % 2 === 0 && index < data.length) {
-              return (<div className='carosel_part'>
-                <Card element={el} />
-                <Card element={data[index + 1]} />
-              </div>)
-            }
-          })}
-      </Carousel>
-    </div>
-  )
-}
+
+  const filteredData = data.filter(country => {
+    return country.name.toLowerCase().includes(value.toLowerCase()) || country.capital.toLowerCase().includes(value.toLowerCase()) 
+  })
+  if(filteredData.length === 0) {
+    return (<div className='search_error'>we have nothing to show you</div>)
+  } else {
+    return (
+      <div class="card_container">
+        <Carousel breakPoints={breakPoints}>
+          {
+            data && filteredData.map((el, index) => {
+              if(filteredData.length === 0) {
+                return (
+                  <div className='search_error'>we have nothing to show you</div>
+                )
+              }
+              if(filteredData.length % 2 === 0) {
+                if (index % 2 === 0 && index < filteredData.length) {
+                    return (<div className='carosel_part'>
+                      <Card element={el} />
+                      <Card element={filteredData[index + 1]} />
+                    </div>)
+                  }
+              } else {
+                if (index % 2 === 0 && index < filteredData.length - 1) {
+                  return (<div className='carosel_part'>
+                    <Card element={el} />
+                    <Card element={filteredData[index + 1]} />
+                  </div>)
+                }
+                if (index === filteredData.length - 1){
+                  return (<div className='carosel_part'>
+                    <Card element={el} />
+                  </div>)
+                }
+              }
+            })}
+        </Carousel>
+      </div>
+    )
+  }
+  }
+  

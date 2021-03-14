@@ -13,7 +13,8 @@ const App = () => {
   const { token, login, logout, userId } = useAuth()
   const [activeAuth, setActiveAuth] = useState(false)
   const isAuthenticated = !!token;
-  const routes = useRoutes(isAuthenticated)
+  const [value, setValue] = useState('');
+  const routes = useRoutes(isAuthenticated, value);
 
   return (
     <AuthContext.Provider value={{
@@ -21,7 +22,7 @@ const App = () => {
     }}>
       <div class="bg">
         <AuthCard active={activeAuth} setAcive={setActiveAuth} />
-        <Header active={activeAuth} setActive={setActiveAuth} />
+        <Header active={activeAuth} setActive={setActiveAuth} value={value} setValue={setValue}/>
         <Router>
           {routes}
         </Router>
