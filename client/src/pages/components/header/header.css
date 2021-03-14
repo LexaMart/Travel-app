@@ -8,6 +8,11 @@
     padding-right: 2%;
 }
 
+
+.app_logo {
+    font-size: 30px;
+}
+
 #select_area {
     display: flex;
     justify-content: center;
@@ -23,8 +28,7 @@
 }
 
 #search_area {
-    margin-left: 50%;
-    width: 30rem;
+    width: 180%;
     height: 56px;
     line-height: 56px;
     position: relative;
@@ -37,4 +41,45 @@
     display: block;
     padding: 0 15px;
     cursor: pointer;
+}
+
+@media (max-width: 820px) and (min-width: 450px) {
+    #navbar {
+        height: 112px;
+    }   
+    .left {
+        display: flex;
+        flex-direction: column;
+        float: none;
+    }
+    .right {
+        float: none;
+    }   
+}
+
+@media (max-width: 449px) {
+    #navbar {
+        height: 168px;
+    }
+    #nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        float: none;
+    }
+    #search_area {
+        align-self: left;
+        width: 280px;
+    }
+    .right {
+        float: none;
+        display: flex;
+        justify-content: space-around;
+        width: 100%;    
+    }
 }

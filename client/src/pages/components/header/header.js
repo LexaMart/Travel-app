@@ -1,25 +1,26 @@
-import React, { useContext } from 'react';
+import React, { useContext} from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { useAuth } from '../../../hooks/auth.hook';
 import 'materialize-css';
 import './header.css';
 
-export const Header = ({active, setActive}) => {
+export const Header = ({active, setActive, value, setValue}) => {
     const { isAuthenticated } = useContext(AuthContext);
     const {logout} = useAuth();
+
     return (
         <div>
             <nav id="navbar">
-                <div class="nav-wrapper">
+                <div id='nav' class="nav-wrapper">
                     <ul class="left">
                         <li>
-                            <a href="/" class="brand-logo">Travel App</a>
+                            <a href="/" class="app_logo left">Travel App</a>
                         </li>
                         <li>
                             <div id="search_area">
                                 <form class="search">
                                     <div class="input-field">
-                                        <input class="search" id="search" type="search" required></input>
+                                        <input class="search" id="search" type="search" autocomplete="off" onChange={(event) => setValue(event.target.value)}></input>
                                         <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                                         <i class="material-icons">close</i>
                                     </div>
@@ -32,8 +33,8 @@ export const Header = ({active, setActive}) => {
                         <li>
                             <div id='select_area' class="input-field col s12">
                                 <select class="selector">
-                                    <option value="RU">Russian</option>
                                     <option value="EN">English</option>
+                                    <option value="RU">Russian</option>
                                     <option value="BE">Belarussian</option>
                                 </select>
                             </div>
@@ -45,4 +46,3 @@ export const Header = ({active, setActive}) => {
         </div>
     );
 }
-
