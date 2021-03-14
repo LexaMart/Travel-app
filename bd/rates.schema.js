@@ -12,6 +12,10 @@ const schema = new Schema({
   user: {
     type: Types.ObjectId,
     ref: 'User',
+  },
+  userName : {
+    type: String,
+    require: true
   }
 })
 module.exports = model('Rates', schema);

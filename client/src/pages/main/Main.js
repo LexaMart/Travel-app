@@ -1,15 +1,18 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { urls } from '../../assets/constants/usrls';
 import { useHttp } from '../../hooks/http.hook';
 import Card from '../components/card/Card';
+import { AuthContext } from '../../context/AuthContext';
 import './main.css';
 import 'materialize-css';
+
 
 
 
 export const Main = () => {
   const { request } = useHttp();
   const [data, setData] = useState([])
+  let { isCountry } = useContext(AuthContext);
   const getCountriesdata = useCallback(async () => {
     try {
       const fetched = await request(urls.GET_COUNTRIES, 'GET', null)
@@ -18,6 +21,7 @@ export const Main = () => {
   }, [request])
   useEffect(
     () => {
+      isCountry = false;
       getCountriesdata();
     }, [getCountriesdata])
   return (

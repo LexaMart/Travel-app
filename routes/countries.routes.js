@@ -5,6 +5,7 @@ const request = require('request-promise');
 const Country = require('../bd/country.schema');
 const User = require('../bd/user.schema');
 const Rate = require('../bd/rates.schema');
+const { json } = require('body-parser');
 const router = Router();
 
 router.get('/', async (req, res) => {
@@ -94,35 +95,55 @@ router.get('/country', async (req, res) => {
   }
 })
 
+router.get('/sight/rate', async (req, res) => {
+  try {
+    const sight = req.query.sight;
+    const ratesArray = await Rate.find({ name: sight });
+    if (!ratesArray) {
+      res.status(404).json({ message: "Not rated yet" });
+    }
+    const response = ratesArray.map( (el) => {
+      return {
+        userName: el.userName,
+        userRate: el.rate,
+      }
+    });
+    return res.status(200).json({ response });
+
+  } catch (e) {
+    return res.status(401).json({ message: e });
+  }
+});
+
 router.post('/sight/rate', async (req, res) => {
   try {
 
     const rate = req.body.rate;
     const sight = req.body.sight;
     const token = req.headers.authorization.split(' ')[1];
-    const userId = jwt.decode(token, config.get("jwtSecret")).userId
-    const user = await User.findById(userId)
+    const userId = jwt.decode(token, config.get("jwtSecret")).userId;
+    const user = await User.findById(userId);
     if (!user) {
-      return res.status(404).json({ message: 'User not found' })
+      return res.status(404).json({ message: 'User not found' });
     }
     const rateCheck = await Rate.exists({
       name: sight,
-      user: userId
+      user: userId,
     })
-    console.log(rateCheck)
     if (rateCheck) {
-      await Rate.updateOne({name:sight, user:userId}, {rate: rate});
-      return res.status(200).json({message: 'Mark has been sent'})
+      await Rate.updateOne({ name: sight, user: userId }, { rate: rate });
+      return res.status(200).json({ message: 'Mark has been sent' })
     }
     const newRate = new Rate({
       name: sight,
       rate: rate,
       user: user.id,
+      userName: user.name,
     })
     await newRate.save();
-    return res.status(200).json({message: 'New mark has been sent'})
+    return res.status(200).json({ message: 'New mark has been sent' })
   } catch (e) {
-
+    return res.status(401).json({ message: e })
   }
 })
 

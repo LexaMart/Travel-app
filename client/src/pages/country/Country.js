@@ -20,13 +20,14 @@ export const Country = () => {
   const [currentSight, setCurrentSight] = useState();
   const { id } = useParams();
   const { request, loading } = useHttp();
-  const [data, setData] = useState(null)
+  const [data, setData] = useState(null);
+  
   const getCountryData = useCallback(async () => {
     try {
       const fetched = await request(`${urls.GET_COUNTRY_INFO}?id=${id}`, 'GET', null)
       setData(fetched);
     } catch (e) { }
-  }, [request])
+  }, [request, id])
   useEffect(
     () => {
       getCountryData();
