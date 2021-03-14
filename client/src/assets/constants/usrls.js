@@ -4,5 +4,6 @@ export const urls = {
   GET_COUNTRIES: `${server}/api/countryList`,
   GET_COUNTRY_INFO: `${server}/api/countryList/country`,
   GET_RATES: `${server}/api/countryList/sight/rate`,
+  GET_PHOTO: `${server}/photo`,
   POST_SIGHT_MARK: `${server}/api/countryList/sight/rate`,
 }

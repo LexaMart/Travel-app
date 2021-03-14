@@ -4,9 +4,18 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT ?? 8080;
 
-app.use(bodyParser.json())
+app.use(express.json({
+  extended: true,
+}))
 app.use('/api/auth', require('./routes/auth.routes'))
 app.use('/api/countryList', require('./routes/countries.routes'))
+app.get('/photo', async (req, res) => {
+  console.log(req.query.path)
+  let path = req.query.path;
+  if (!path) return res.status(404).json({ message: 'Bad user PATH' });
+  console.log(process.cwd() + "\\" + path)
+  return res.sendFile(process.cwd() + '\\' + path);
+ })
 
 
 async function start() {

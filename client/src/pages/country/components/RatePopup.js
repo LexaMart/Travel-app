@@ -15,10 +15,8 @@ export const Modal = ({ sight, active, setActive }) => {
       if (!sight) {
         return
       }
-      console.log(sight)
-      const fetched = await request(`${urls.GET_RATES}?sight=${sight}`, "GET",);
+      const fetched = await request(`${urls.GET_RATES}?sight=${sight}`, "GET");
       setFetchedRates(fetched.response);
-      console.log(fetched);
     } catch (e) {
       console.log(e)
     }
@@ -29,7 +27,6 @@ export const Modal = ({ sight, active, setActive }) => {
   }, [getRates,])
 
   const submitRate = async (rate) => {
-    console.log(rate)
     await request(`${urls.POST_SIGHT_MARK}`, 'POST', { rate, sight }, {
       Authorization: `Bearer ${token}`
     });

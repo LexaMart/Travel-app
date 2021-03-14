@@ -1,12 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { useAuth } from '../../../hooks/auth.hook';
+import { urls } from '../../../assets/constants/usrls';
 import 'materialize-css';
 import './header.css';
 
 export const Header = ({active, setActive}) => {
-    const { isAuthenticated } = useContext(AuthContext);
-    const {logout} = useAuth();
+    const { isAuthenticated, photoPath } = useContext(AuthContext);
+    const {logout } = useAuth();
+    useEffect(() => {
+        console.log(photoPath)
+    })
+   
     return (
         <div>
             <nav id="navbar">
@@ -28,6 +33,7 @@ export const Header = ({active, setActive}) => {
                         </li>
                     </ul>
                     <ul className="right">
+                        {isAuthenticated && photoPath && <li><img style={{width: "25px"}} src={`${urls.GET_PHOTO}?path=${photoPath}`} alt="use_photo" /></li>}
                         {isAuthenticated ? <li><a href="/main" onClick={logout}>Sign out</a></li> : <li><div className="sign-in-link" onClick={() => setActive(!active)}>Sign in</div></li>}
                         <li>
                             <div id='select_area' className="input-field col s12">

@@ -16,5 +16,9 @@ const schema = new Schema ({
   ratedSights: [{
     name: String,
   }],
+  userPhotoPath: {
+    type: String,
+    required: true,
+  }
 })
 module.exports = model('User', schema);

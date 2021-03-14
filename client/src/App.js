@@ -10,14 +10,14 @@ import { useState } from 'react';
 import 'materialize-css';
 
 const App = () => {
-  const { token, login, logout, userId } = useAuth()
+  const { token, login, logout, userId, photoPath } = useAuth()
   const [activeAuth, setActiveAuth] = useState(false)
   const isAuthenticated = !!token;
   const routes = useRoutes(isAuthenticated)
 
   return (
     <AuthContext.Provider value={{
-      token, login, logout, userId, isAuthenticated
+      token, login, logout, userId, isAuthenticated, photoPath
     }}>
       <div className="bg">
         <AuthCard active={activeAuth} setAcive={setActiveAuth} />
