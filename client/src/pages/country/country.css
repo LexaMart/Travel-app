@@ -1,0 +1,277 @@
+.country-content-wrapper {
+  width: fit-content;
+  max-width: 950px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 320px);
+  row-gap: 10px;
+  grid-template-rows: auto;
+  justify-items: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.card-image-handler {
+  width: fit-content;
+  height: fit-content;
+}
+
+.country-content-card {
+  width: 245px;
+  height: 150px;
+  border-radius: 20px;
+}
+
+.weather-vidjet {
+  display: flex;
+  background-color: #3f80da;
+  justify-content: space-around;
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.weather {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.vidjet-capital {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.time {
+  font-weight: bold;
+}
+
+.current-time {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.currencies {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(37, 35, 35);
+  color: white
+}
+
+.currency-name {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.curse-num {
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.currency-block {
+  display: flex;
+  flex-flow: column;
+}
+
+.video {
+  height: fit-content;
+  width: fit-content;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: auto;
+}
+
+.video iframe {
+  width: 560px !important;
+  height: 315px !important;
+}
+
+.country-description {
+  max-height: 315px;
+  height: 100%;
+  overflow: auto;
+  background: linear-gradient(111.34deg, rgba(255, 255, 255, 0.68) 0%, rgba(255, 255, 255, 0.61) 100%);
+  backdrop-filter: blur(5px);
+}
+
+.description-text {
+  padding: 10px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.map {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  width: 92%;
+  height: 280px;
+  justify-content: center;
+  border-radius: 35px;
+}
+
+.leaflet-container {
+  width: 104%;
+  height: 100%;
+  border-radius: 35px;
+}
+
+.sight {
+  position: relative;
+  perspective: 1000px;
+}
+
+.front, .back {
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  transition: all 1s;
+  backface-visibility: hidden;
+}
+
+.front {
+  position: absolute;
+}
+
+.back {
+  position: absolute;
+  background-color: rgb(56, 49, 49);
+  color: white;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  padding: 0 5px 0 5px;
+}
+
+.sight-name {
+  text-align: center;
+}
+
+.sight-description {
+  color: white;
+  height: 80%;
+  overflow: auto;
+}
+
+.sight:hover .front {
+  transform: rotateY(180deg);
+}
+
+.sight:hover .back {
+  transform: rotateY(360deg);
+}
+
+.popup {
+  transition: all 0.4s;
+  z-index: 20000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+}
+
+.popup-active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: all;
+}
+
+.popup-content {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 60%;
+  background-color: rgb(243, 240, 240);
+  border-radius: 25px;
+}
+
+.users-rates {
+  width: 100%;
+  max-width: 100%;
+  padding: 10px;
+  overflow: auto;
+}
+
+.sight-user-rate {
+  margin-right: 15px;
+  font-size: 20px;
+}
+
+/*----------------------------------------*/
+
+@media (max-width:915px) {
+  .currencies {
+    grid-column: 2;
+  }
+  .country-description {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .video {
+    grid-column: 1/3;
+  }
+  .video iframe {
+    width: 580px !important;
+    height: 315px !important;
+  }
+  .map {
+    grid-column-start: 1 !important;
+    grid-column-end: 3 !important;
+  }
+  .leaflet-container {
+    width: 100%;
+  }
+  .grid-num-3 {
+    grid-column: 1
+  }
+  .grid-num-2 {
+    grid-column: 2;
+    grid-row: 7;
+  }
+  .grid-num-5 {
+    grid-column: 1;
+  }
+}
+
+@media(max-width:640px) {
+  .weather-vidjet {
+    grid-column: 1;
+  }
+  .currencies {
+    grid-column: 1;
+  }
+  .video {
+    grid-column: 1;
+  }
+  .video iframe {
+    width: 280px !important;
+    height: 315px !important;
+  }
+  .map {
+    grid-column-start: 0 !important;
+    grid-column-end: 1 !important;
+  }
+  .leaflet-container {
+    width: 290px;
+    height: 100%;
+    border-radius: 35px;
+  }
+  .grid-num-1, .grid-num-2, .grid-num-3, .grid-num-4, .grid-num-5, .grid-num-0, .grid-num-0 {
+    grid-column: 1;
+  }
+}

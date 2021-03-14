@@ -1,8 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { urls } from '../../assets/constants/usrls';
-import Card from '../components/card/card';
+import Card from '../components/card/Card';
 import Carousel from 'react-elastic-carousel';
 import { useHttp } from '../../hooks/http.hook';
+import { AuthContext } from '../../context/AuthContext';
 import './main.css';
 import 'materialize-css';
 
@@ -17,6 +18,7 @@ export const Main = ({value}) => {
   ];
   const { request } = useHttp();
   const [data, setData] = useState([])
+  let { isCountry } = useContext(AuthContext);
   const getCountriesdata = useCallback(async () => {
     try {
       const fetched = await request(urls.GET_COUNTRIES, 'GET', null)
@@ -25,6 +27,7 @@ export const Main = ({value}) => {
   }, [request])
   useEffect(
     () => {
+      isCountry = false;
       getCountriesdata();
     }, [getCountriesdata])
 

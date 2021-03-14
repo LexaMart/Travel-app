@@ -11,7 +11,7 @@ export const AuthCard = ({ active, setAcive }) => {
   const message = useMessage();
   const { loading, error, request, clearError } = useHttp();
   const [form, setForm] = useState({
-    email: '', password: '', name: ''
+    email: '', password: '', name: '', avatar: null
   })
 
   useEffect(() => {
@@ -19,29 +19,53 @@ export const AuthCard = ({ active, setAcive }) => {
     clearError();
   }, [error, message, clearError])
 
+  const avatarHandler = (event) => {
+    const file = event.target.files[0];
+    setForm({ ...form, avatar: file })
+  }
+
   const changeHandler = event => {
     setForm({ ...form, [event.target.name]: event.target.value })
   }
 
   const registerHandler = async () => {
+    console.log('trying to register')
+
     try {
-      const data = await request(`${serverUrl}/api/auth/register`, 'POST', { ...form })
+      const formData = new FormData();
+      formData.append('email', form.email);
+      formData.append('password', form.password);
+      formData.append('name', form.name);
+      if (form.avatar) {
+        formData.append('avatar', form.avatar, form.avatar.name)
+      } else {
+        formData.append('avatar', "")
+      }
+      const data = await request(`${serverUrl}/api/auth/register`, 'POST', formData, {}, false)
       message(data.message);
-    } catch (e) { }
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   const loginHandler = async () => {
+
     try {
-      const data = await request(`${serverUrl}/api/auth/login`, 'POST', { ...form })
-      auth.login(data.token, data.userId)
+      const formData = new FormData();
+      formData.append('email', form.email);
+      formData.append('password', form.password);
+      const data = await request(`${serverUrl}/api/auth/login`, 'POST', formData, {}, false)
+      auth.login(data.token, data.userId, data.avatar)
       setAcive(!active)
-    } catch (e) { }
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   return (
     <>
-      <div className="shadow" onClick={() => setAcive(!active)} style={active ? {display: 'block'}: {display: 'none'}} />
-      <div className="auth-card-block" style={active ? {left : '-0'}: {left:'-8000px'}}>
+      <div className="shadow" onClick={() => setAcive(!active)} style={active ? { display: 'block' } : { display: 'none' }} />
+      <div className="auth-card-block" style={active ? { left: '-0' } : { left: '-8000px' }}>
         <div className="row">
           <div className="col offset-3">
             <div className="card blue darken-1 auth-card">
@@ -79,7 +103,17 @@ export const AuthCard = ({ active, setAcive }) => {
                     className="card-input"
                     onChange={changeHandler}
                   />
-                  <label htmlFor="password">Name or Nikname</label>
+                  <label htmlFor="login">Name or Nikname</label>
+                </div>
+                <div className="input-field">
+                  <input placeholder="Set your photo "
+                    accept="image/jpeg"
+                    id="Photo"
+                    type="file"
+                    name="avatar"
+                    className="card-input"
+                    onChange={avatarHandler}
+                  />
                 </div>
               </div>
               <div className="card-action">

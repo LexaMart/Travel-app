@@ -3,12 +3,15 @@ import { useCallback, useState } from 'react';
 export const useHttp = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const request = useCallback(async (url, method = 'GET', body = null, headers = {}) => {
+  const request = useCallback(async (url, method = 'GET', body = null, headers = {}, isJson = true) => {
     setLoading(true);
     try {
       if(body) {
-        body = JSON.stringify(body);
-        headers['Content-Type'] = 'application/json';
+        if (isJson){
+        headers['Content-Type'] = "application/json";
+        }
+        // body = JSON.stringify(body);
+        // headers['Content-Type'] = "multipart/form-data";
       }
       const response = await fetch(url, { method, body, headers });
       const data = await response.json();
@@ -20,6 +23,7 @@ export const useHttp = () => {
     } catch (e) {
       setLoading(false);
       setError(e.message);
+      console.log(e)
       throw e;
     }
   }, [])
