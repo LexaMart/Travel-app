@@ -4,11 +4,23 @@ const { check, validationResult } = require('express-validator');
 const config = require('config');
 const jwt = require('jsonwebtoken');
 const User = require('../bd/user.schema');
+const multer = require('multer')
+const storage = multer.diskStorage(
+  {
+    destination: './users-avatars/',
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + Date.now() + '-' + Math.round(Math.random() * 1E9 + ".png"));
+    }
+  }
+);
+const upload = multer({ storage: storage });
+
 const router = Router();
 
 // /api/auth/register
 router.post(
   '/register',
+  upload.single('avatar'),
   [
     check('email', 'Bad email').isEmail(),
     check('password', 'Password must contain at least 6 symbols')
@@ -35,22 +47,28 @@ router.post(
       } else {
         nickName = name;
       }
-      const user = new User({ email, password: hashedPassword, name: nickName })
+      if (!req.file) {
+        req.file = { path: 'users-avatars/unnamed.jpg' };
+      }
+      const user = new User({ email, password: hashedPassword, name: nickName, userPhotoPath: req.file.path })
       await user.save();
       res.status(201).json({ message: 'User created' });
 
     } catch (e) {
+      console.log(e);
       res.status(500).json({ message: 'Back error. Try again' })
     }
   })
 
 router.post('/login',
+  upload.fields([]),
   [
     check('email', 'Wrong email').normalizeEmail().isEmail(),
     check('password', 'Wrong password').exists(),
   ],
   async (req, res) => {
     try {
+      console.log(req.body.email)
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({
@@ -72,7 +90,7 @@ router.post('/login',
         config.get('jwtSecret'),
         { expiresIn: '1h' }
       )
-      res.json({ token, userId: user.id });
+      res.json({ token, userId: user.id, avatar: user.userPhotoPath });
     }
     catch (e) {
       console.log(e)
