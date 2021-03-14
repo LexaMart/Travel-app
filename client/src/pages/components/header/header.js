@@ -5,7 +5,7 @@ import { urls } from '../../../assets/constants/usrls';
 import 'materialize-css';
 import './header.css';
 
-export const Header = ({active, setActive}) => {
+export const Header = ({active, setActive, value, setValue}) => {
     const { isAuthenticated, photoPath } = useContext(AuthContext);
     const {logout } = useAuth();
     useEffect(() => {

@@ -98,6 +98,7 @@ router.get('/country', async (req, res) => {
 router.get('/sight/rate', async (req, res) => {
   try {
     const sight = req.query.sight;
+    
     const ratesArray = await Rate.find({ name: sight });
     if (!ratesArray) {
       res.status(404).json({ message: "Not rated yet" });
@@ -111,6 +112,7 @@ router.get('/sight/rate', async (req, res) => {
     return res.status(200).json({ response });
 
   } catch (e) {
+    console.log(req.query.sight)
     return res.status(401).json({ message: e });
   }
 });
