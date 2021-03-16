@@ -68,7 +68,7 @@ export const AuthCard = ({ active, setAcive }) => {
       <div className="auth-card-block" style={active ? { left: '-0' } : { left: '-8000px' }}>
         <div className="row">
           <div className="col offset-3">
-            <div className="card blue darken-1 auth-card">
+            <div className="card darken-1 auth-card">
               <div className="card-content white-text">
                 <span className="card-title">Registration</span>
               </div>

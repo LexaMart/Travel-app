@@ -22,13 +22,14 @@ input.card-input:focus + label {
 .auth-card {
   height: fit-content !important;
   width: 100%;
+  background: rgba(0, 0, 0, 0.75);
 }
 .auth-card-block {
   position: fixed;
   transition: all 1s;
   z-index: 5000 !important;
   width: 35%;
-  background: red;
+  background: rgba(0, 0, 0, 0.5);
   height: 100vh;
   display: flex;
   align-items: center;

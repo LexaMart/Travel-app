@@ -25,6 +25,11 @@
     padding: 0 20px;
 }
 
+.us:hover {
+    text-shadow: 2px 2px 2px white;
+    transition: .2s;
+}
+
 #footer_id {
     padding: 0%;
     color: #fff;
