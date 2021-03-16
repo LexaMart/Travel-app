@@ -6,6 +6,8 @@ import { AuthContext } from '../../../context/AuthContext';
 import { useAuth } from '../../../hooks/auth.hook';
 import { urls } from '../../../assets/constants/usrls';
 import { store } from '../../../store/store';
+
+import {sendTranslation} from '../../../assets/constants/static.translations';
 import 'materialize-css';
 import './header.css';
 
@@ -46,11 +48,11 @@ export const Header = ({ active, setActive, value, setValue }) => {
                     </ul>
                     <ul className="right">
                         {isAuthenticated && photoPath && <li><img style={{ width: "25px" }} src={`${urls.GET_PHOTO}?path=${photoPath}`} alt="use_photo" /></li>}
-                        {isAuthenticated ? <li><a href="/main" onClick={logout}>Sign out</a></li> : <li><div className="sign-in-link" onClick={() => setActive(!active)}>Sign in</div></li>}
+                        {isAuthenticated ? <li><a href="/main" onClick={logout}>{sendTranslation('singOut')[language]}</a></li> : <li><div className="sign-in-link" onClick={() => setActive(!active)}>{sendTranslation('singIn')[language]}</div></li>}
                         <li>
                             <div id='select_area' className="input-field col s12">
                                 <select onChange={changeLang} className="selector">
-                                    <option value={0} selected={+language === 0} >English</option>
+                                    <option value={0} selected={+language === 0}>English</option>
                                     <option value={1} selected={+language === 1}>Russian</option>
                                     <option value={2} selected={+language === 2}>Belarussian</option>
                                 </select>
