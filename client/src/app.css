@@ -1,6 +1,6 @@
 .bg {
     background-image: url('./assets/images/BG.png');
-    height: 100vh;
+    height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

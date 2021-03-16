@@ -30,6 +30,7 @@ export const Main = ({ value }) => {
   useEffect(
     () => {
       getCountriesdata();
+      document.querySelector('.bg').style.height = '100vh'
       dispatch(showSearch(true));
     }, [getCountriesdata])
 
