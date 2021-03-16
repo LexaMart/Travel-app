@@ -40,7 +40,7 @@ export const Weather = ({ capital, weatherIcon, temp, feelsLike, main, timeZones
       <div className='weather'>
         <span className="vidjet-capital">{capital.toUpperCase()}</span>
         <img className="weather-img" src={weatherIcon} alt="weather" />
-        <span className="temperature">{sendTranslation('temperature')[language]}{Math.round(temp)} &#176;С</span>
+        <span className="temperature">{sendTranslation('temperature')[language]} {Math.round(temp)} &#176;С</span>
         <span className="feels-like">{sendTranslation('feelsLike')[language]} {Math.round(feelsLike)} &#176;С</span>
         <span className="weather-img__description">{+language === 0 ? main : ''}</span>
       </div>

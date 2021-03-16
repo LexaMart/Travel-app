@@ -134,11 +134,14 @@
   display: flex;
   align-items: center;
   transition: all 1s;
-  backface-visibility: hidden;
+
 }
 
 .front {
   position: absolute;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  z-index: 2;
 }
 
 .rate-img {
@@ -173,6 +176,7 @@
 
 .sight:hover .front {
   transform: rotateY(180deg);
+  z-index: 0;
 }
 
 .sight:hover .back {
