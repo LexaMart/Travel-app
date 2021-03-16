@@ -30,6 +30,12 @@
     transition: .2s;
 }
 
+
+.youtube:hover {
+    text-shadow: 2px 2px 2px red;
+    transition: .2s;
+}
+
 #footer_id {
     padding: 0%;
     color: #fff;
@@ -53,5 +59,9 @@
     .links {
         flex-direction: column;
         justify-content: space-around;
+        font-size: 10px;
+    }
+    .youtube {
+        font-size: 10px;
     }
 }
