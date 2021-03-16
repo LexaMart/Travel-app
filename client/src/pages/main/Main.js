@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import { urls } from '../../assets/constants/usrls';
-import Card from '../components/card/card';
+import Card from '../components/card/Card';
 import Carousel from 'react-elastic-carousel';
 import { useHttp } from '../../hooks/http.hook';
 import { showSearch } from '../../store/actions'
@@ -11,7 +11,7 @@ import 'materialize-css';
 
 
 export const Main = ({ value }) => {
-
+  const language = useSelector((store) => store.language);
   const dispatch = useDispatch();
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
@@ -35,13 +35,13 @@ export const Main = ({ value }) => {
     }, [getCountriesdata])
 
   const filteredData = data.filter(country => {
-    return country.name[0].toLowerCase().includes(value.toLowerCase()) || country.capital[0].toLowerCase().includes(value.toLowerCase())
+    return country.name[language].toLowerCase().includes(value.toLowerCase()) || country.capital[language].toLowerCase().includes(value.toLowerCase())
   })
   if (filteredData.length === 0) {
     return (<div className='search_error'>we have nothing to show you</div>)
   } else {
     return (
-      <div class="card_container">
+      <div className="card_container">
         <Carousel id="carousel" breakPoints={breakPoints}>
           {
             data && filteredData.map((el, index) => {
