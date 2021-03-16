@@ -24,6 +24,7 @@ export const Header = ({ active, setActive, value, setValue }) => {
         dispatch(changeLanguage(e.target.value))
     }
 
+
     return (
         <div>
             <nav id="navbar">
@@ -37,9 +38,12 @@ export const Header = ({ active, setActive, value, setValue }) => {
                                 <div id="search_area">
                                     <form className="search">
                                         <div className="input-field">
-                                            <input className="search" id="search" type="search" autocomplete="off" onChange={(event) => setValue(event.target.value)}></input>
+                                            <input className="search to_clear" id="search" type="search" autocomplete="off" onChange={(event) => setValue(event.target.value)}></input>
                                             <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
-                                            <i className="material-icons">close</i>
+                                            <i className="material-icons" onClick={() => {
+                                                document.querySelector('.to_clear').value = '';
+                                                setValue('');
+                                            }}>close</i>
                                         </div>
                                     </form>
                                 </div>
@@ -48,7 +52,7 @@ export const Header = ({ active, setActive, value, setValue }) => {
                     </ul>
                     <ul className="right">
                         {isAuthenticated && photoPath && <li className="acc-photo"><img style={{ width: "25px" }} src={`${urls.GET_PHOTO}?path=${photoPath}`} alt="use_photo" /></li>}
-                        {isAuthenticated ? <li><a href="/main" onClick={logout}>{sendTranslation('singOut')[language]}</a></li> : <li><div className="sign-in-link" onClick={() => setActive(!active)}>{sendTranslation('singIn')[language]}</div></li>}
+                        {isAuthenticated ? <li><a className="sign-in-link" href="/main" onClick={logout}>{sendTranslation('singOut')[language]}</a></li> : <li><div className="sign-in-link" onClick={() => setActive(!active)}>{sendTranslation('singIn')[language]}</div></li>}
                         <li>
                             <div id='select_area' className="input-field col s12">
                                 <select onChange={changeLang} className="selector">

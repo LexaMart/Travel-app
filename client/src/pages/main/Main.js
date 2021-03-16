@@ -38,18 +38,13 @@ export const Main = ({ value }) => {
     return country.name[0].toLowerCase().includes(value.toLowerCase()) || country.capital[0].toLowerCase().includes(value.toLowerCase())
   })
   if (filteredData.length === 0) {
-    return (<div className='search_error'>we have nothing to show you</div>)
+    return (<div className="search_error_container"><div className='search_error'></div></div>)
   } else {
     return (
       <div class="card_container">
         <Carousel id="carousel" breakPoints={breakPoints}>
           {
             data && filteredData.map((el, index) => {
-              if (filteredData.length === 0) {
-                return (
-                  <div className='search_error'>we have nothing to show you</div>
-                )
-              }
               if (filteredData.length % 2 === 0) {
                 if (index % 2 === 0 && index < filteredData.length) {
                   return (<div className='carosel_part'>

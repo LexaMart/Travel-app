@@ -141,9 +141,18 @@
   position: absolute;
 }
 
+.rate-img {
+  cursor: pointer;
+  border-radius: 10%;
+}
+
+.rate-img:hover {
+  background-color: rgb(160, 160, 160);
+}
+
 .back {
   position: absolute;
-  background-color: rgb(56, 49, 49);
+  background-color: rgb(134, 134, 134);
   color: white;
   transform: rotateY(180deg);
   display: flex;

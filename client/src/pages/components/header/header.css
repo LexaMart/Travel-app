@@ -53,7 +53,7 @@
     transition: .2s;
 }
 
-@media (max-width: 820px) and (min-width: 450px) {
+@media (max-width: 820px) and (min-width: 465px) {
     #navbar {
         height: 112px;
     }   
@@ -67,7 +67,7 @@
     }   
 }
 
-@media (max-width: 449px) {
+@media (max-width: 464px) {
     #navbar {
         height: 168px;
     }
