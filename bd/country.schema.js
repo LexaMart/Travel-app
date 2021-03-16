@@ -2,11 +2,11 @@ const { Schema, model } = require('mongoose');
 
 const schema = new Schema ({
   name: {
-    type: String,
+    type: Array,
     required: true
   },
   capital: {
-    type: String,
+    type: Array,
     required: true, 
   },
   lat: {
@@ -34,8 +34,8 @@ const schema = new Schema ({
     require: true
   },
   sights: [{
-    name: String,
-    description: String,
+    name: Array,
+    description: Array,
     photo: String,    
   }],
   video: {
@@ -43,7 +43,7 @@ const schema = new Schema ({
     require: true,
   },
   description: {
-    type: String,
+    type: Array,
     require: true,
   },
   cardBG: {
@@ -52,4 +52,4 @@ const schema = new Schema ({
   }
 });
 
-module.exports = model('Countries', schema);
+module.exports = model('countries', schema);

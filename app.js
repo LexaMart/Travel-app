@@ -21,11 +21,10 @@ app.get('/photo', async (req, res) => {
 
 async function start() {
   try {
-    await mongoose.connect(`mongodb+srv://LexaMart:1q2w3e@cluster0.kaxpd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {
+    await mongoose.connect(`mongodb+srv://LexaMart:1q2w3e@cluster0.kaxpd.mongodb.net/travelapp?retryWrites=true&w=majority`, {
       useNewUrlParser: true,
       useFindAndModify: false
     });
-    // console.log(await Country.findOne({ name: 'France' }));
     app.listen(PORT, () => {
       console.log(`Serve is started on PORT ${PORT}`);
     });

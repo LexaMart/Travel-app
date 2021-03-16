@@ -40,6 +40,9 @@
   font-size: 15px;
   font-weight: bold;
 }
+.temperature, .feels-like {
+  font-size: 14px;
+}
 
 .time {
   font-weight: bold;

@@ -1,13 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { AuthContext } from '../../../context/AuthContext';
 import { useHttp } from '../../../hooks/http.hook';
 import { useMessage } from '../../../hooks/message.hook';
+import { sendTranslation } from '../../../assets/constants/static.translations';
 import './auth.css'
 
 const serverUrl = 'http://localhost:8080'
 
 export const AuthCard = ({ active, setAcive }) => {
   const auth = useContext(AuthContext)
+  const language = useSelector((store) => store.language)
   const message = useMessage();
   const { loading, error, request, clearError } = useHttp();
   const [form, setForm] = useState({
@@ -70,12 +73,12 @@ export const AuthCard = ({ active, setAcive }) => {
           <div className="col offset-3">
             <div className="card blue darken-1 auth-card">
               <div className="card-content white-text">
-                <span className="card-title">Registration</span>
+                <span className="card-title">{sendTranslation('regis')[language]}</span>
               </div>
               <div>
                 <div className="input-field">
                   <input
-                    placeholder=" Enter email"
+                    placeholder={sendTranslation('emailEnt')[language]}
                     id="email"
                     type="text"
                     name="email"
@@ -83,27 +86,27 @@ export const AuthCard = ({ active, setAcive }) => {
                     onChange={changeHandler}
                   />
 
-                  <label htmlFor="email">Email</label>
+                  <label htmlFor="email">{sendTranslation('email')[language]}</label>
                 </div>
                 <div className="input-field">
-                  <input placeholder="Enter password"
+                  <input placeholder={sendTranslation('passEnt')[language]}
                     id="password"
                     type="password"
                     name="password"
                     className="card-input"
                     onChange={changeHandler}
                   />
-                  <label htmlFor="password">Password</label>
+                  <label htmlFor="password">{sendTranslation('pass')[language]}</label>
                 </div>
                 <div className="input-field">
-                  <input placeholder="Enter name or nickname"
+                  <input placeholder={sendTranslation('nickNameEnt')[language]}
                     id="nickname"
                     type="text"
                     name="name"
                     className="card-input"
                     onChange={changeHandler}
                   />
-                  <label htmlFor="login">Name or Nikname</label>
+                  <label htmlFor="login">{sendTranslation('nickName')[language]}</label>
                 </div>
                 <div className="input-field">
                   <input placeholder="Set your photo "
@@ -122,14 +125,14 @@ export const AuthCard = ({ active, setAcive }) => {
                   onClick={loginHandler}
                   disabled={loading}
                 >
-                  Sing In
-            </button>
+                  {sendTranslation('signInBtn')[language]}
+                </button>
                 <button
                   className='btn grey lighten-1 black-text'
                   onClick={registerHandler}
                   disabled={loading}
-                >Registration
-             </button>
+                >{sendTranslation('regBtn')[language]}
+                </button>
 
               </div>
             </div>
