@@ -47,7 +47,7 @@ export const Header = ({ active, setActive, value, setValue }) => {
                         </li>
                     </ul>
                     <ul className="right">
-                        {isAuthenticated && photoPath && <li><img style={{ width: "25px" }} src={`${urls.GET_PHOTO}?path=${photoPath}`} alt="use_photo" /></li>}
+                        {isAuthenticated && photoPath && <li className="acc-photo"><img style={{ width: "25px" }} src={`${urls.GET_PHOTO}?path=${photoPath}`} alt="use_photo" /></li>}
                         {isAuthenticated ? <li><a href="/main" onClick={logout}>{sendTranslation('singOut')[language]}</a></li> : <li><div className="sign-in-link" onClick={() => setActive(!active)}>{sendTranslation('singIn')[language]}</div></li>}
                         <li>
                             <div id='select_area' className="input-field col s12">

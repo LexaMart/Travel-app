@@ -1,7 +1,23 @@
 .bg {
     background-image: url('./assets/images/BG.png');
-    height: 100%;
+    height: 100vh;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
+
+input {
+    color: white;
+}
+
+.acc-photo {
+    display: flex;
+    flex-flow: column;
+}
+.right {
+    display: flex;
+    align-items: center;
 }
