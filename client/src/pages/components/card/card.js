@@ -10,7 +10,7 @@ const Card = ({ element }) => {
         backgroundSize: 'cover',
     }
     return (
-        <a href={`/country/${element.id}`}class="country-card" style={styles}>
+        <a href={`/country/${element.id}`} class="country-card" style={styles}>
             <div class="country">{element.name}</div>
             <div class="capital">{element.capital}</div>
             <img class="flag" src={element.flag} alt="flag"></img>

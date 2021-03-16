@@ -1,8 +1,8 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import { useRoutes } from './routes';
 import './app.css';
-import { Header } from './pages/components/header/Header';
-import { Footer } from './pages/components/footer/Footer';
+import { Header } from './pages/components/header/header';
+import { Footer } from './pages/components/footer/footer';
 import { useAuth } from './hooks/auth.hook';
 import { AuthCard } from './pages/components/AuthCard/Auth';
 import { AuthContext } from './context/AuthContext';
