@@ -11,6 +11,7 @@ const router = Router();
 router.get('/', async (req, res) => {
   try {
     const countries = await Country.find();
+    console.log(countries)
     if (!countries) {
       res.status(404).json({ message: 'API error' })
     }
@@ -38,7 +39,7 @@ router.get('/country', async (req, res) => {
       return res.status(404).json({ message: 'Country not found' })
     }
     let weather = null;
-    await request(`http://api.openweathermap.org/data/2.5/weather?q=${country.capital}&appid=${config.get('OWM')}&units=metric`, (err, res, body) => {
+    await request(`http://api.openweathermap.org/data/2.5/weather?q=${country.capital[0]}&appid=${config.get('OWM')}&units=metric`, (err, res, body) => {
       const weatherData = JSON.parse(body)
       weather = {
         main: weatherData.weather[0].main,

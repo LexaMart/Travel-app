@@ -1,15 +1,18 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { urls } from '../../assets/constants/usrls';
 import Card from '../components/card/Card';
 import Carousel from 'react-elastic-carousel';
 import { useHttp } from '../../hooks/http.hook';
-import { AuthContext } from '../../context/AuthContext';
+import { showSearch } from '../../store/actions'
 import './main.css';
 import 'materialize-css';
 
 
 
-export const Main = ({value}) => {
+export const Main = ({ value }) => {
+
+  const dispatch = useDispatch();
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
     { width: 550, itemsToShow: 2, itemsToScroll: 2 },
@@ -18,7 +21,6 @@ export const Main = ({value}) => {
   ];
   const { request } = useHttp();
   const [data, setData] = useState([])
-  let { isCountry } = useContext(AuthContext);
   const getCountriesdata = useCallback(async () => {
     try {
       const fetched = await request(urls.GET_COUNTRIES, 'GET', null)
@@ -27,14 +29,14 @@ export const Main = ({value}) => {
   }, [request])
   useEffect(
     () => {
-      isCountry = false;
       getCountriesdata();
+      dispatch(showSearch(true));
     }, [getCountriesdata])
 
   const filteredData = data.filter(country => {
-    return country.name.toLowerCase().includes(value.toLowerCase()) || country.capital.toLowerCase().includes(value.toLowerCase()) 
+    return country.name[0].toLowerCase().includes(value.toLowerCase()) || country.capital[0].toLowerCase().includes(value.toLowerCase())
   })
-  if(filteredData.length === 0) {
+  if (filteredData.length === 0) {
     return (<div className='search_error'>we have nothing to show you</div>)
   } else {
     return (
@@ -42,18 +44,18 @@ export const Main = ({value}) => {
         <Carousel breakPoints={breakPoints}>
           {
             data && filteredData.map((el, index) => {
-              if(filteredData.length === 0) {
+              if (filteredData.length === 0) {
                 return (
                   <div className='search_error'>we have nothing to show you</div>
                 )
               }
-              if(filteredData.length % 2 === 0) {
+              if (filteredData.length % 2 === 0) {
                 if (index % 2 === 0 && index < filteredData.length) {
-                    return (<div className='carosel_part'>
-                      <Card element={el} />
-                      <Card element={filteredData[index + 1]} />
-                    </div>)
-                  }
+                  return (<div className='carosel_part'>
+                    <Card element={el} />
+                    <Card element={filteredData[index + 1]} />
+                  </div>)
+                }
               } else {
                 if (index % 2 === 0 && index < filteredData.length - 1) {
                   return (<div className='carosel_part'>
@@ -61,7 +63,7 @@ export const Main = ({value}) => {
                     <Card element={filteredData[index + 1]} />
                   </div>)
                 }
-                if (index === filteredData.length - 1){
+                if (index === filteredData.length - 1) {
                   return (<div className='carosel_part'>
                     <Card element={el} />
                   </div>)
@@ -72,5 +74,4 @@ export const Main = ({value}) => {
       </div>
     )
   }
-  }
-  
+}
