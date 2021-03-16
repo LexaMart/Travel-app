@@ -13,7 +13,7 @@ import { Video } from './components/Video';
 import { Map } from './components/Map';
 import { SightCard } from './components/SightCard';
 import { store } from '../../store/store';
-import {showSearch} from '../../store/actions'
+import { showSearch } from '../../store/actions'
 
 import './country.css';
 import { Modal } from './components/RatePopup';
@@ -27,8 +27,8 @@ export const Country = () => {
   const { request, loading } = useHttp();
   const [data, setData] = useState(null);
   const dispatch = useDispatch();
-  
-  
+
+
   const getCountryData = useCallback(async () => {
     try {
       const fetched = await request(`${urls.GET_COUNTRY_INFO}?id=${id}`, 'GET', null)
@@ -41,7 +41,21 @@ export const Country = () => {
       dispatch(showSearch(false));
     }, [getCountryData])
   if (loading) {
-    return <h1 style={{ height: "100vh" }}>loading</h1>
+  return (
+    <div style={{ height: "100vh", display: "flex", justifyContent: "center" ,alignItems:"center" }}>
+      <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
   }
   return data && (
     <>
@@ -53,7 +67,7 @@ export const Country = () => {
         <Video video={data.video} />
         <Map lat={data.lat} lng={data.lng} />
         {data.sights.map((el, index) => {
-          return <div className={`grid-num-${index}`} onMouseEnter={() => {setCurrentSight(el.name[language]) }}><SightCard element={el} modalActive={modalActive} setModalActive={setModalActive} /> </div>
+          return <div className={`grid-num-${index}`} onMouseEnter={() => { setCurrentSight(el.name[language]) }}><SightCard element={el} modalActive={modalActive} setModalActive={setModalActive} /> </div>
         })}
       </div>
       <Modal sight={currentSight} active={modalActive} setActive={setModalActive} />
