@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { urls } from '../../assets/constants/usrls';
-import Card from '../components/card/Card';
+import Card from '../components/card/card';
 import Carousel from 'react-elastic-carousel';
 import { useHttp } from '../../hooks/http.hook';
 import { showSearch } from '../../store/actions'
@@ -41,7 +41,7 @@ export const Main = ({ value }) => {
   } else {
     return (
       <div class="card_container">
-        <Carousel breakPoints={breakPoints}>
+        <Carousel id="carousel" breakPoints={breakPoints}>
           {
             data && filteredData.map((el, index) => {
               if (filteredData.length === 0) {
