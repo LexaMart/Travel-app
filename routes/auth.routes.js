@@ -55,7 +55,6 @@ router.post(
       res.status(201).json({ message: 'User created' });
 
     } catch (e) {
-      console.log(e);
       res.status(500).json({ message: 'Back error. Try again' })
     }
   })
@@ -68,7 +67,6 @@ router.post('/login',
   ],
   async (req, res) => {
     try {
-      console.log(req.body.email)
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({
@@ -93,7 +91,6 @@ router.post('/login',
       res.json({ token, userId: user.id, avatar: user.userPhotoPath });
     }
     catch (e) {
-      console.log(e)
       res.status(500).json({ message: "Server error" })
     }
   })

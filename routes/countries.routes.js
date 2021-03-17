@@ -11,7 +11,6 @@ const router = Router();
 router.get('/', async (req, res) => {
   try {
     const countries = await Country.find();
-    console.log(countries)
     if (!countries) {
       res.status(404).json({ message: 'API error' })
     }
@@ -26,7 +25,6 @@ router.get('/', async (req, res) => {
     })
     res.status(200).json({ response });
   } catch (e) {
-    console.log(e)
   }
 })
 
@@ -60,7 +58,6 @@ router.get('/country', async (req, res) => {
         }
         switch (currency) {
           case "USD":
-            console.log(typeof fetched.data[key]);
             currentCurrencies.USD = (+fetched.data[key]).toFixed(2)
             break;
           case "EUR":
@@ -74,7 +71,6 @@ router.get('/country', async (req, res) => {
         }
       }
     })
-    console.log(currentCurrencies);
     res.status(200).json({
       weather: weather,
       name: country.name,
@@ -92,7 +88,6 @@ router.get('/country', async (req, res) => {
       currentCurrencies,
     })
   } catch (e) {
-    console.log(e)
   }
 })
 
@@ -113,7 +108,6 @@ router.get('/sight/rate', async (req, res) => {
     return res.status(200).json({ response });
 
   } catch (e) {
-    console.log(req.query.sight)
     return res.status(401).json({ message: e });
   }
 });

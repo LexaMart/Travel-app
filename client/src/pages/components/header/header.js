@@ -20,7 +20,6 @@ export const Header = ({ active, setActive, value, setValue }) => {
     const { logout } = useAuth();
 
     const changeLang = (e) => {
-        console.log(e.target.value);
         dispatch(changeLanguage(e.target.value))
     }
 

@@ -18,7 +18,6 @@ export const Modal = ({ sight, active, setActive }) => {
       const fetched = await request(`${urls.GET_RATES}?sight=${sight}`, "GET");
       setFetchedRates(fetched.response);
     } catch (e) {
-      console.log(e)
     }
   }, [request, sight])
 

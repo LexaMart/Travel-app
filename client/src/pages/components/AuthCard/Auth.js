@@ -32,7 +32,6 @@ export const AuthCard = ({ active, setAcive }) => {
   }
 
   const registerHandler = async () => {
-    console.log('trying to register')
 
     try {
       const formData = new FormData();
@@ -47,7 +46,6 @@ export const AuthCard = ({ active, setAcive }) => {
       const data = await request(`${serverUrl}/api/auth/register`, 'POST', formData, {}, false)
       message(data.message);
     } catch (e) {
-      console.log(e);
     }
   }
 
@@ -61,7 +59,6 @@ export const AuthCard = ({ active, setAcive }) => {
       auth.login(data.token, data.userId, data.avatar)
       setAcive(!active)
     } catch (e) {
-      console.log(e);
     }
   }
 
