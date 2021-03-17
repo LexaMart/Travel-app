@@ -12,7 +12,7 @@ export const Footer = () => {
           <a className="white-text us" href="https://github.com/Nerbet">Nerbet</a>
           <a className="white-text us" href="https://github.com/LexaMart">LexaMart</a>
         </div>
-        <a className="red-text youtube" href="">Youtube</a>
+        <a className="red-text youtube" href="https://youtu.be/nydxkjtA4iU">Youtube</a>
       </div>
     </footer>
   )
