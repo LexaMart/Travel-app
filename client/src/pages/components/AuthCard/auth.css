@@ -1,12 +1,13 @@
 .signIn-btn {
   margin-right: 10px;
 }
+
 input.card-input {
   border-bottom: 1px solid #fff !important;
   box-shadow: 0 1px 0 0 #fff !important;
 }
 
-input.card-input + label {
+input.card-input+label {
   color: #ffffff !important;
 }
 
@@ -15,7 +16,7 @@ input.card-input:focus {
   box-shadow: 0 1px 0 0 #ffeb3b !important;
 }
 
-input.card-input:focus + label {
+input.card-input:focus+label {
   color: #ffeb3b !important;
 }
 
@@ -24,6 +25,7 @@ input.card-input:focus + label {
   width: 100%;
   background: rgba(0, 0, 0, 0.75);
 }
+
 .auth-card-block {
   position: fixed;
   transition: all 1s;

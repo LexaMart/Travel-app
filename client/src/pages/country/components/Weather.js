@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { sendTranslation } from '../../../assets/constants/static.translations';
 
@@ -7,20 +7,6 @@ import { sendTranslation } from '../../../assets/constants/static.translations';
 export const Weather = ({ capital, weatherIcon, temp, feelsLike, main, timeZones }) => {
 
   const language = useSelector((store) => store.language)
-
-  // const setTranslationToDate = (lang) => {
-  //   switch (lang) {
-  //     case 0:
-  //       return 'en-US';
-  //     case 1:
-  //     return 'ru'
-  //     case 2 :
-  //       return 'by-BY';
-  //     default:
-  //       return 'en-US';
-  //   }
-  // }
-
   const getTime = () => {
     return new Date().toLocaleTimeString('en-US', { timeZone: timeZones })
   }
@@ -34,7 +20,7 @@ export const Weather = ({ capital, weatherIcon, temp, feelsLike, main, timeZones
   return (
     <div className="country-content-card weather-vidjet">
       <div className="current-time">
-        <p className="data">{+language === 0 ? new Date().toLocaleDateString('en-US', options) : new Date().toLocaleDateString('rus', options) }</p>
+        <p className="data">{+language === 0 ? new Date().toLocaleDateString('en-US', options) : new Date().toLocaleDateString('rus', options)}</p>
         <p className="time">{time}</p>
       </div>
       <div className='weather'>

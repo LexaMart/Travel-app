@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import {changeLanguage} from '../../../store/actions';
+import { changeLanguage } from '../../../store/actions';
 import { AuthContext } from '../../../context/AuthContext';
 import { useAuth } from '../../../hooks/auth.hook';
 import { urls } from '../../../assets/constants/usrls';
 
-import {sendTranslation} from '../../../assets/constants/static.translations';
+import { sendTranslation } from '../../../assets/constants/static.translations';
 import 'materialize-css';
 import './header.css';
 

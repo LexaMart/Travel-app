@@ -12,6 +12,10 @@ const staticTranslation = {
   nickNameEnt: ['Enter name of nickname', 'Введите имя или никнейм', 'Увядзiце iмя альбо нiкнэйм'],
   signInBtn: ['Sign in', 'Вход', 'Уваход'],
   regBtn: ['Registration', 'Регистрация', 'Рэгiстрацыя'],
+  ratethis: ['Rate this sight', 'Оцени достопримечательность', 'Ацані славутасць'],
+  average: ['Average rate', 'Средняя оценка', 'Средняя оценка'],
+  sendrate: ['Rate', 'Оцени', 'Ацэнiць'],
+  noRate: ['No rates yet', 'Пока нет оценок', 'Пакуль няма адзнак']
 
 };
 
@@ -43,6 +47,14 @@ export const sendTranslation = (field) => {
       return staticTranslation.signInBtn
     case 'regBtn':
       return staticTranslation.regBtn
+    case 'rateThis':
+      return staticTranslation.ratethis
+    case 'average':
+      return staticTranslation.average
+    case 'rateSend':
+      return staticTranslation.sendrate
+    case 'noMark':
+      return staticTranslation.noRate
     default: break;
 
   }

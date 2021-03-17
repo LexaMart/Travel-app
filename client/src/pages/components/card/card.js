@@ -18,9 +18,9 @@ const Card = ({ element }) => {
                 position: "absolute",
                 width: "auto",
                 height: "100%",
-                zIndex:"-1",
+                zIndex: "-1",
                 top: "0",
-                opacity:"0.5"
+                opacity: "0.5"
             }} src={element.cardBG} alt="imagecountry" className='card-bg-img' />
             <div className="country">{element.name[language]}</div>
             <div className="capital">{element.capital[language]}</div>

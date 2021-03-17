@@ -17,6 +17,7 @@ input {
     display: flex;
     flex-flow: column;
 }
+
 .right {
     display: flex;
     align-items: center;

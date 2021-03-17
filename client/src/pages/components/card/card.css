@@ -17,18 +17,19 @@
     z-index: 5;
     overflow: hidden;
 }
+
 .country-card::after {
     content: "";
-	display: block;    
-	width: 100%;
-	height: 100%;    
-	position: absolute;
-	top: 0;      
-	left: 0; 
-    z-index: 6;  
-	background: transparent;
-	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(159, 157, 157, 0.8));
-	opacity: 0.3;
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 6;
+    background: transparent;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(159, 157, 157, 0.8));
+    opacity: 0.3;
 }
 
 .country-card:hover {

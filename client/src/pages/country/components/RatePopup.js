@@ -1,14 +1,17 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import { urls } from '../../../assets/constants/usrls';
 import { AuthContext } from '../../../context/AuthContext';
 import { useHttp } from '../../../hooks/http.hook';
+import { sendTranslation } from '../../../assets/constants/static.translations';
 
 export const Modal = ({ sight, active, setActive }) => {
   const [rate, setRate] = useState(5)
   const [fetchedRates, setFetchedRates] = useState([]);
-  const { request, loading } = useHttp();
+  const { request } = useHttp();
   const { token } = useContext(AuthContext);
+  const language = useSelector((store) => store.language);
 
   const getRates = useCallback(async () => {
     try {
@@ -39,15 +42,15 @@ export const Modal = ({ sight, active, setActive }) => {
 
           <div className="rate-block" style={{ display: "flex", flexFlow: "column", justifyContent: "center", textAlign: "center" }}>
             <span className="rate-header">
-              Rate this sight
-          </span>
+              {sendTranslation('rateThis')[language]}
+            </span>
             <input onChange={(e) => setRate(e.target.value)} type="range" id="rate" name="Rate"
               min="0" max="5" />
             <span className='curren-rate' style={{ marginBottom: "15px" }}>{rate}</span>
-            <button onClick={() => submitRate(rate)} style={{ width: "100%", marginBottom:"10px"}} class="btn waves-effect waves-light red lighten-1" type="submit" name="action">Rate
+            <button onClick={() => submitRate(rate)} style={{ width: "100%", marginBottom: "10px" }} class="btn waves-effect waves-light red lighten-1" type="submit" name="action">{sendTranslation('rateSend')[language]}
               <i class="material-icons right">send</i>
             </button>
-            <span className="average">Average rate: <b>{fetchedRates.reduce((a, el) => a += el.userRate, 0) !== 0 ? (fetchedRates.reduce((a, el) => a += el.userRate, 0)/fetchedRates.length).toFixed(1) : "No rates yet" }</b></span>
+            <span className="average">{sendTranslation('average')[language]}: <b>{fetchedRates.reduce((a, el) => a += el.userRate, 0) !== 0 ? (fetchedRates.reduce((a, el) => a += el.userRate, 0) / fetchedRates.length).toFixed(1) : sendTranslation("noMark")[language]}</b></span>
           </div>
 
         </div>
