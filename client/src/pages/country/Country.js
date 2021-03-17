@@ -12,7 +12,6 @@ import { Description } from './components/CountryDescription';
 import { Video } from './components/Video';
 import { Map } from './components/Map';
 import { SightCard } from './components/SightCard';
-import { store } from '../../store/store';
 import { showSearch } from '../../store/actions'
 
 import './country.css';
@@ -39,7 +38,7 @@ export const Country = () => {
     () => {
       getCountryData();
       dispatch(showSearch(false));
-    }, [getCountryData])
+    }, [getCountryData, dispatch])
   if (loading) {
   return (
     <div style={{ height: "100vh", display: "flex", justifyContent: "center" ,alignItems:"center" }}>

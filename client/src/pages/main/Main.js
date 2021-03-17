@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { urls } from '../../assets/constants/usrls';
 import Card from '../components/card/Card';
 import Carousel from 'react-elastic-carousel';
@@ -32,7 +32,7 @@ export const Main = ({ value }) => {
       getCountriesdata();
       document.querySelector('.bg').style.height = '100vh'
       dispatch(showSearch(true));
-    }, [getCountriesdata])
+    }, [getCountriesdata, dispatch])
 
   const filteredData = data.filter(country => {
     return country.name[language].toLowerCase().includes(value.toLowerCase()) || country.capital[language].toLowerCase().includes(value.toLowerCase())
@@ -47,20 +47,20 @@ export const Main = ({ value }) => {
             data && filteredData.map((el, index) => {
               if (filteredData.length % 2 === 0) {
                 if (index % 2 === 0 && index < filteredData.length) {
-                  return (<div className='carosel_part'>
+                  return (<div key={el.id} className='carosel_part'>
                     <Card element={el} />
                     <Card element={filteredData[index + 1]} />
                   </div>)
                 }
               } else {
                 if (index % 2 === 0 && index < filteredData.length - 1) {
-                  return (<div className='carosel_part'>
+                  return (<div key={el.id} className='carosel_part'>
                     <Card element={el} />
                     <Card element={filteredData[index + 1]} />
                   </div>)
                 }
                 if (index === filteredData.length - 1) {
-                  return (<div className='carosel_part'>
+                  return (<div key={el.id} className='carosel_part'>
                     <Card element={el} />
                   </div>)
                 }

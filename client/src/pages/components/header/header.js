@@ -1,11 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {changeLanguage} from '../../../store/actions';
 import { AuthContext } from '../../../context/AuthContext';
 import { useAuth } from '../../../hooks/auth.hook';
 import { urls } from '../../../assets/constants/usrls';
-import { store } from '../../../store/store';
 
 import {sendTranslation} from '../../../assets/constants/static.translations';
 import 'materialize-css';
@@ -37,7 +36,7 @@ export const Header = ({ active, setActive, value, setValue }) => {
                                 <div id="search_area">
                                     <form className="search">
                                         <div className="input-field">
-                                            <input className="search to_clear" id="search" type="search" autocomplete="off" onChange={(event) => setValue(event.target.value)}></input>
+                                            <input className="search to_clear" id="search" type="search" autoComplete="off" onChange={(event) => setValue(event.target.value)}></input>
                                             <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
                                             <i className="material-icons" onClick={() => {
                                                 document.querySelector('.to_clear').value = '';
